@@ -1,0 +1,20 @@
+.example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
+    margin-inline-start: 8px;
+}
+
+mat-form-field {
+    padding-inline-end: 8px;
+}
+
+mat-icon {
+    opacity: 0.5;
+}
+
+.submit {
+    margin-block-start: 1rem;
+}

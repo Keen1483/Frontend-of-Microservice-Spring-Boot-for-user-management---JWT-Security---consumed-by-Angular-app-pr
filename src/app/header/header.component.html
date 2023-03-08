@@ -1,0 +1,10 @@
+<mat-toolbar color="primary" class="mat-elevation-z16" [style.margin-bottom]="'8px'">
+  <span><a class="brand" routerLink="">DevSkills</a></span>
+  <span class="example-spacer"></span>
+  <a mat-button routerLink="">Home</a>
+  <a *ngIf="authService.isLoggedIn()" mat-button routerLink="/users">Users List</a>
+  <a *ngIf="authService.isLoggedIn()" mat-button routerLink="/role-save">Create Role</a>
+  <a *ngIf="!authService.isLoggedIn()" mat-button routerLink="/signup">Signup</a>
+  <button mat-button *ngIf="!authService.isLoggedIn()" (click)="openLoginDialog()">Signin</button>
+  <button mat-button *ngIf="authService.isLoggedIn()" (click)="authService.logout()">Logout</button>
+</mat-toolbar>

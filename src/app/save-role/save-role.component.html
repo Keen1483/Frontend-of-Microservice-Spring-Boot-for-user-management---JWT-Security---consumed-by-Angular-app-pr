@@ -1,0 +1,13 @@
+<h2 class="mat-display-1">Fill this form to create user role</h2>
+<div>
+    <mat-form-field>
+        <mat-label>Role Name</mat-label>
+        <input matInput [formControl]="roleName" placeholder="USER, ADMIN2, MANAGER7">
+        <mat-hint align="end">Only uppercase, Not contains ROLE or ROLE_</mat-hint>
+    </mat-form-field>
+</div>
+<button
+    mat-raised-button
+    color="primary"
+    [disabled]="roleName.invalid"
+    (click)="submitForm()">Save</button>

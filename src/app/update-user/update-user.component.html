@@ -1,0 +1,98 @@
+<h2 class="mat-display-1">Update User</h2>
+<mat-accordion class="example-header-align">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Login data
+            </mat-panel-title>
+            <mat-panel-description>
+                Update your email and password (required)
+            </mat-panel-description>
+            <mat-icon>login</mat-icon>
+        </mat-expansion-panel-header>
+        
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput [formControl]="email">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" [formControl]="password">
+            <mat-hint align="end">Min 4 characters</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Confirm your Password</mat-label>
+            <input matInput type="password" [(ngModel)]="confirmPassword">
+            <mat-hint align="end" *ngIf="password.value === confirmPassword">correct
+                <mat-icon>check_circle</mat-icon>
+            </mat-hint>
+            <mat-hint align="end" *ngIf="password.value && password.value !== confirmPassword">incorrect
+                <mat-icon>cancel</mat-icon>
+            </mat-hint>
+        </mat-form-field>
+
+        <mat-action-row>
+            <button mat-button color="primary" (click)="nextStep()">Next</button>
+        </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Additional data
+            </mat-panel-title>
+            <mat-panel-description>
+                Update your name and username (optional)
+            </mat-panel-description>
+            <mat-icon>account_circle</mat-icon>
+        </mat-expansion-panel-header>
+
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput [formControl]="name">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput [formControl]="username">
+        </mat-form-field>
+
+        <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">Previous</button>
+            <button mat-button color="primary" (click)="nextStep()">Next</button>
+        </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Roles
+            </mat-panel-title>
+            <mat-panel-description>
+                Update roles for this user (optional)
+            </mat-panel-description>
+            <mat-icon>security</mat-icon>
+        </mat-expansion-panel-header>
+        
+        <mat-form-field>
+            <mat-label>Roles</mat-label>
+            <mat-select [formControl]="roles" multiple>
+                <mat-option *ngFor="let role of rolesArray" [value]="role">
+                    {{ role.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">Previous</button>
+            <button mat-button color="primary" (click)="nextStep()">End</button>
+        </mat-action-row>
+    </mat-expansion-panel>
+</mat-accordion>
+<div class="submit">
+    <button
+        mat-raised-button
+        [disabled]="email.invalid || (password.invalid || password.value !== confirmPassword) || name.invalid || username.invalid"
+        (click)="submitForm()"
+        color="primary">Submit
+    </button>
+</div>

@@ -1,0 +1,29 @@
+<div>
+    <h2 class="mat-display-1">Fill to sign in</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+        <div>
+            <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username">
+                <mat-hint align="end">Min 3 characters</mat-hint>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input type="password" matInput formControlName="password">
+                <mat-hint align="end">Min 4 characters</mat-hint>
+            </mat-form-field>
+        </div>
+        <button
+            mat-raised-button
+            matTooltip="Click to submit"
+            matTooltipShowDelay="500"
+            matTooltipHideDelay="1000"
+            color="primary"
+            [disabled]="loginForm.invalid">Submit
+        </button>
+    </form>
+    <span *ngIf="errorMessage" class="mat-caption">{{ errorMessage }}</span>
+    <div>
+        <span>Don’t have an account? <a routerLink="/signup" (click)="closeDialog()">Sign up</a></span>
+    </div>
+</div>
